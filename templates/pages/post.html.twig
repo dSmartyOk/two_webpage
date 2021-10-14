@@ -1,0 +1,8 @@
+{# templates/pages/post.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ post.name }}</h1>
+    <p class="post_text">{{ post.text }}</p>
+    <img class="post_image" src='../images/{{ post.image }}' alt=""/>
+{% endblock %}

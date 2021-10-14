@@ -1,0 +1,28 @@
+{# templates/pages/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="posts">
+        <h1 class="posts_title">Posts</h1>
+        {% for post in posts %}
+            <a class="post" href="{{ path('view_post', {'id': post.id}) }}">
+                <span class="post_name">{{ post.name }}</span>
+                <span class="post_text">{{ post.text|slice(0, 300) ~ '...'  }}</span>
+
+                {% if post.image %}
+                    <img class="post_image" src="../images/{{ post.image }}" alt="{{ post.image }}">
+                {% endif %}
+            </a>
+        {% endfor %}
+        <div class="pagination">
+            {% for pageNumber in 1..countPages %}
+                {% if pageNumber == activePage %}
+                    <span class="pagination_link">{{ pageNumber }}</span>
+                {% else %}
+                    <a class="pagination_page-link" href="{{ path('index_page', {'page': pageNumber}) }}">{{ pageNumber }}</a>
+                {% endif %}
+            {% endfor  %}
+        </div>
+    </div>
+{% endblock %}
